@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<title>Цех — V24 SMART</title>
+<title>Цех — V24.1 HOTFIX</title>
 <meta name="theme-color" content="#f4b64c">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -648,13 +648,13 @@ body{background:radial-gradient(circle at 85% 0,#fff3dd 0,#fffaf2 28%,#f6f0e6 10
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 <script>
-const BUILD_VERSION = "V24 SMART UI + PUSH";
+const BUILD_VERSION = "V24.1 HOTFIX";
 const SB_URL = "https://lzzfaxbthyxdogmegftb.supabase.co";
 const SB_KEY = "sb_publishable_IaDCRHBDp4tIq0Nz5QIh_g_md0QTgwL";
 const params = new URLSearchParams(location.search);
 const SHOP_TOKEN = params.get("shop");
 const STAFF_TOKEN = params.get("staff");
-const BUILD = "V24-SMART-UI-PUSH-2026-10-02";
+const BUILD = "V24.1-HOTFIX-2026-10-02";
 const app = document.getElementById("app");
 const modalRoot = document.getElementById("modalRoot");
 let installPromptEvent=null, dynamicManifestUrl=null, liveState="connecting";
@@ -978,7 +978,7 @@ async function boot(){
   }catch(e){console.error(e);errBox(e)}
 }
 function renderHome(){
- app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V24 SMART UI + PUSH</b></p></div></div>`;
+ app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V24.1 HOTFIX</b></p></div></div>`;
 }
 async function loadShop(){
  const r=await client.rpc("v19_shop_snapshot");
@@ -1904,14 +1904,14 @@ function v23UnreadBadge(){const n=v23OrderCount("new");return n?`<span class="ba
 const renderStaffV22=renderStaff;
 renderStaff=function(){
  const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";
- app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>• V24</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;
+ app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>• V24.1</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;
  renderOverlay();focusHashOrderV24();
 }
 
 const renderShopV22=renderShop;
 renderShop=function(){
  const count=basketItems().length,units=basketUnits();
- app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • V24</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()">?</button><button class="v23IconBtn" onclick="refreshShop()">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товары и количество. Корзина всегда будет под рукой.</p></div><span style="font-size:34px">🧺</span></div><div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;
+ app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • V24.1</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()">?</button><button class="v23IconBtn" onclick="refreshShop()">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товары и количество. Корзина всегда будет под рукой.</p></div><span style="font-size:34px">🧺</span></div><div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;
  renderOverlay();
 }
 
@@ -2228,11 +2228,11 @@ printInvoice=async function(){
 /* Version headers. */
 renderStaff=function(){
  const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";
- app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>• V24</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV23();
+ app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>• V24.1</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24();
 }
 renderShop=function(){
  const count=basketItems().length,units=basketUnits();v24NormalizeTarget();
- app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • V24</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()">?</button><button class="v23IconBtn" onclick="refreshShop()">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товары и количество. Корзина всегда будет под рукой.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice" style="margin-top:-4px"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay();
+ app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • V24.1</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()">?</button><button class="v23IconBtn" onclick="refreshShop()">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товары и количество. Корзина всегда будет под рукой.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice" style="margin-top:-4px"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay();
 }
 
 function startPolling(){startLiveSync()}
