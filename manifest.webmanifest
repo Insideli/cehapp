@@ -1,12 +1,13 @@
 {
-  "name": "Цех — заказы и производство",
+  "name": "Цех — заказы",
   "short_name": "Цех",
-  "description": "Заказы магазинов, производство, накладные и рабочая панель цеха",
+  "description": "Заказы магазинов, производство, накладные и уведомления цеха",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fffaf2",
-  "theme_color": "#d99b2b",
+  "background_color": "#f8f5ef",
+  "theme_color": "#f4b64c",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -18,5 +19,10 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "lang": "ru",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
   ]
 }
