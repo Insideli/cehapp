@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<title>Цех — V25 UNIVERSAL</title>
+<title>Цех — V25.2 UNIVERSAL POLISH</title>
 <meta name="theme-color" content="#f4b64c">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -687,6 +687,59 @@ button:focus-visible,.btn:focus-visible,.input:focus-visible{outline:3px solid r
 @media(max-width:390px){.v23Metrics{grid-template-columns:1fr 1fr!important}.v23Metric{min-height:80px}.v23MetricIcon{display:none!important}.v23Metric{display:block!important}.v23Metric b{margin-bottom:2px}.v23Brand{max-width:43vw}.modalActions{grid-template-columns:1fr!important}.modalActions .btn{width:100%}.invoiceBottomActions{grid-template-columns:1fr!important}.v25ProductHead{grid-template-columns:46px minmax(0,1fr) auto}.v25ProductThumb{width:46px;height:46px}.v25ProductPrice{font-size:13px}.shopActions,.staffActions{grid-template-columns:1fr!important}.v25SecretLine code{font-size:12px}}
 @media(max-width:340px){.v23Header .v23Logo{display:none!important}.v23Brand{max-width:52vw}.v23Metric small{font-size:10px}.v23Shell .nav button{font-size:12px!important}.product{padding:8px!important}.qty{gap:3px!important}.qty button{width:36px!important;height:36px!important}.qty .qtyInput{width:48px!important;height:36px!important}.v25CompactMain small{font-size:11px}.v25Chevron{width:32px;height:32px;flex-basis:32px}}
 
+
+/* =========================================================
+   V25.2 UNIVERSAL POLISH — navigation/help/modal/tap fixes
+   ========================================================= */
+button,.btn,.v23HelpToggle,.v25CompactHead,.v23Shell .nav button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.btn,.v23HelpToggle,.v25CompactHead,.v23Shell .nav button,.v25Switch{transition:transform .08s ease,filter .12s ease,background-color .12s ease,border-color .12s ease,opacity .12s ease}
+.btn:active:not(:disabled),.v23HelpToggle:active,.v25CompactHead:active,.v23Shell .nav button:active{transform:scale(.985);filter:brightness(.97)}
+.btn:disabled,button:disabled{opacity:.42!important;filter:grayscale(.18);cursor:not-allowed!important;box-shadow:none!important}
+
+/* Help accordion: normal document flow inside one scroll area. Grid compression in V25 could hide the opened body. */
+.v23HelpList{display:block!important;overflow-y:auto!important;overflow-x:hidden!important;min-height:0!important;flex:1 1 auto!important;padding:1px 1px calc(14px + env(safe-area-inset-bottom))!important;scroll-behavior:smooth}
+.v23HelpItem{display:block!important;height:auto!important;min-height:0!important;margin:0 0 8px!important;overflow:clip!important}
+.v23HelpItem:last-child{margin-bottom:2px!important}
+.v23HelpToggle{min-height:64px!important}
+.v23HelpBody{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important;padding:12px 14px 14px!important}
+.v23HelpBody p:first-child,.v23HelpBody ul:first-child{margin-top:0}
+.v23HelpBody p:last-child,.v23HelpBody ul:last-child{margin-bottom:0}
+
+/* Generic modal shell: header + independently scrolling body + actions. Actions no longer cover content. */
+.v26ModalSheet{display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.v26ModalSheet>.modalHead{position:relative!important;top:auto!important;flex:0 0 auto!important;margin:0!important}
+.v26ModalBody{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:1px 1px 8px}
+.v26ModalSheet>.modalActions{position:relative!important;bottom:auto!important;flex:0 0 auto!important;margin-top:4px!important;padding-top:10px!important;padding-bottom:max(2px,env(safe-area-inset-bottom))!important;background:linear-gradient(180deg,rgba(255,253,249,.92),#fffdf9 25%)!important}
+.v26InlineSaved{min-height:20px;margin:7px 0 0;font-size:12px;color:#2d8055;font-weight:800}
+.v26InlineSaved.error{color:#b04747}
+
+/* Notification device card stays readable on narrow phones. */
+.v25NotifyHeader{align-items:center!important}.v25NotifyHeader>div{min-width:0}.v25NotifyHeader small{overflow-wrap:anywhere}
+.v25ToggleRow{min-height:72px}.v25Switch{min-width:48px}
+.v25DeviceList{padding-bottom:4px}.v25Device{min-width:0}.v25Device small{word-break:break-word}
+
+/* Horizontal section navigation keeps its position after tab changes. */
+.v23Shell .nav{scroll-behavior:auto!important;scrollbar-width:none!important}
+.v23Shell .nav::-webkit-scrollbar{display:none!important}
+
+@media(max-width:640px){
+ .v23HelpSheet{height:86dvh!important;max-height:86dvh!important}
+ .v23HelpToggle{grid-template-columns:42px minmax(0,1fr) 34px!important;padding:9px 9px!important;gap:9px!important}
+ .v23HelpIcon{width:42px!important;height:42px!important}
+ .v23HelpToggle b{font-size:16px!important}.v23HelpToggle small{font-size:12px!important;line-height:1.2!important}
+ .v26ModalSheet{max-height:92dvh!important}
+ .v26ModalBody{padding-bottom:10px!important}
+ .v26ModalSheet>.modalActions{grid-template-columns:1fr 1fr!important}
+ .v26ModalSheet>.modalActions .wide{grid-column:1/-1!important}
+ .v25NotifyCard{padding:12px 13px!important}
+ .v25ToggleRow{grid-template-columns:minmax(0,1fr) 50px!important;gap:10px!important}
+}
+@media(max-width:390px){
+ .v26ModalSheet>.modalActions{grid-template-columns:1fr!important}
+ .v26ModalSheet>.modalActions .btn{width:100%!important}
+ .v23HelpSheet{height:88dvh!important;max-height:88dvh!important}
+}
+
 </style>
 </head>
 <body>
@@ -694,13 +747,13 @@ button:focus-visible,.btn:focus-visible,.input:focus-visible{outline:3px solid r
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 <script>
-const BUILD_VERSION = "V25 UNIVERSAL";
+const BUILD_VERSION = "V25.2 UNIVERSAL POLISH";
 const SB_URL = "https://lzzfaxbthyxdogmegftb.supabase.co";
 const SB_KEY = "sb_publishable_IaDCRHBDp4tIq0Nz5QIh_g_md0QTgwL";
 const params = new URLSearchParams(location.search);
 const SHOP_TOKEN = params.get("shop");
 const STAFF_TOKEN = params.get("staff");
-const BUILD = "V25-UNIVERSAL-2026-10-05";
+const BUILD = "V25.2-UNIVERSAL-POLISH-2026-10-05";
 const app = document.getElementById("app");
 const modalRoot = document.getElementById("modalRoot");
 let installPromptEvent=null, dynamicManifestUrl=null, liveState="connecting";
@@ -1024,7 +1077,7 @@ async function boot(){
   }catch(e){console.error(e);errBox(e)}
 }
 function renderHome(){
- app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V25 UNIVERSAL</b></p></div></div>`;
+ app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V25.2 UNIVERSAL POLISH</b></p></div></div>`;
 }
 async function loadShop(){
  const r=await client.rpc("v19_shop_snapshot");
@@ -2385,7 +2438,7 @@ notificationModalV24=function(){
 settingsPanel=function(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
  const ownUrl=staffUrlFromToken(STAFF_TOKEN);
- return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V25 UNIVERSAL</div></div>${v24ScheduleCardHtml()}</div>`;
+ return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V25.2 UNIVERSAL POLISH</div></div>${v24ScheduleCardHtml()}</div>`;
 }
 
 /* Header: clean production UI, version stays only in Settings. */
@@ -2408,6 +2461,122 @@ ordersPanel=function(){
  const visible=v23OrderFilter==="all"?orders:orders.filter(o=>o.status===v23OrderFilter);
  return `<div class="v23OrdersPanel"><div class="v23PanelTitle"><h2>Заказы</h2><span class="small muted">${visible.length} из ${orders.length}</span></div><div class="v23StatusFilters">${filterDefs.map(([id,label,count])=>`<button class="${v23OrderFilter===id?"active":""}" onclick="setOrderFilterV24('${id}')">${label} · ${count}</button>`).join("")}</div>${visible.length?`<div class="v23Orders">${visible.map(o=>`<article id="order-${o.id}" class="v23Order"><div class="v23OrderTop"><div><div class="v23OrderTitle">#${o.order_number} • ${esc(shopName(o.shop_id))}</div><div class="v23OrderMeta"><span class="v24MetaChip date">📅 ${esc(orderDayLabel(o.order_date))}</span><span class="v24MetaChip">🕒 ${esc(v24TimeOnly(o.created_at))}</span>${o.updated_at&&o.updated_at!==o.created_at?`<span class="v24MetaChip">обновлён ${esc(v24TimeOnly(o.updated_at))}</span>`:""}</div>${v23OrderThumbs(o)}</div><span class="pill s-${o.status}">${st(o.status)}</span></div><div class="v23OrderItems">${(o.order_items||[]).map(i=>`<div class="itemLine"><span>${esc(i.product_name)} × <b>${i.quantity}</b></span>${showMoney?`<b>${money(i.unit_price*i.quantity)}</b>`:""}</div>`).join("")}</div>${orderAdditionsForStaff(o)}<div class="orderFooter ${showMoney?"":"viewerOnly"}">${showMoney?`<div class="orderTotal">${money(total(o))}</div>`:""}<select class="input statusSelect" onchange="changeStatus('${o.id}',this.value,this)">${statuses.map(x=>`<option value="${x}" ${o.status===x?"selected":""}>${st(x)}</option>`).join("")}</select></div>${showMoney?`<button class="btn secondary invoiceBtn" onclick="openOrderInvoice('${o.id}')">Накладная заказа</button>`:""}</article>`).join("")}</div>`:`<div class="empty">В этой группе заказов нет.</div>`}</div>`;
 }
+
+
+/* =========================================================
+   V25.2 UNIVERSAL POLISH — runtime fixes
+   ========================================================= */
+let v26NavScrollLeft=0;
+let v26HelpQuery="";
+let v26HelpFocusId=null;
+
+function v26CaptureNavState(){
+ const n=document.querySelector('.v23Shell .nav');
+ if(n)v26NavScrollLeft=n.scrollLeft;
+}
+function v26RestoreNavState(){
+ requestAnimationFrame(()=>{
+  const n=document.querySelector('.v23Shell .nav');
+  if(!n)return;
+  const max=Math.max(0,n.scrollWidth-n.clientWidth);
+  n.scrollLeft=Math.min(Math.max(0,v26NavScrollLeft),max);
+  const active=n.querySelector('button.active');
+  if(active){
+   const left=active.offsetLeft,right=left+active.offsetWidth,viewLeft=n.scrollLeft,viewRight=viewLeft+n.clientWidth;
+   if(left<viewLeft+4)n.scrollLeft=Math.max(0,left-8);
+   else if(right>viewRight-4)n.scrollLeft=Math.min(max,right-n.clientWidth+8);
+  }
+ });
+}
+
+const renderStaffV25ForV252=renderStaff;
+renderStaff=function(){
+ v26CaptureNavState();
+ const y=window.scrollY;
+ renderStaffV25ForV252();
+ v26RestoreNavState();
+ requestAnimationFrame(()=>window.scrollTo(0,y));
+};
+const setTabV25ForV252=setTab;
+setTab=async function(id){
+ v26CaptureNavState();
+ const y=window.scrollY;
+ await setTabV25ForV252(id);
+ v26RestoreNavState();
+ requestAnimationFrame(()=>window.scrollTo(0,y));
+};
+
+/* Help: preserve search, show opened body reliably and keep it in view. */
+v23HelpItem=function(id,icon,title,subtitle,body,kind="staff"){
+ const open=(kind==="staff"?v23StaffHelpSection:v23ShopHelpSection)===id;
+ const search=(title+" "+subtitle+" "+body.replace(/<[^>]+>/g," ")).toLowerCase();
+ return `<section class="v23HelpItem" data-help-id="${esc(id)}" data-help-search="${esc(search)}"><button class="v23HelpToggle" type="button" aria-expanded="${open?'true':'false'}" onclick="toggleHelpSectionV24('${kind}','${id}')"><span class="v23HelpIcon">${icon}</span><span><b>${esc(title)}</b><small>${esc(subtitle)}</small></span><span class="v23HelpChevron">${open?'⌃':'⌄'}</span></button>${open?`<div class="v23HelpBody">${body}</div>`:""}</section>`;
+};
+v23HelpShell=function(title,subtitle,items,closeFn){return `<div class="modalBack v23HelpBack" role="dialog" aria-modal="true"><div class="modalSheet v23HelpSheet"><div class="v23HelpHandle"></div><div class="modalHead"><div class="v23HelpTitle"><span class="v23HelpBulb">💡</span><div><h2 style="margin:0">${esc(title)}</h2><div class="muted">${esc(subtitle)}</div></div></div><button class="closeBtn" type="button" onclick="${closeFn}()">×</button></div><label class="v23HelpSearch"><span>⌕</span><input value="${esc(v26HelpQuery)}" placeholder="Что хотите узнать?" oninput="filterHelpV24(this.value)"></label><div class="v23HelpList">${items.join("")}</div></div></div>`};
+filterHelpV24=function(value){
+ v26HelpQuery=String(value||"");
+ const q=v26HelpQuery.trim().toLowerCase();
+ document.querySelectorAll('.v23HelpItem').forEach(el=>{el.hidden=!!q&&!String(el.dataset.helpSearch||'').includes(q)});
+};
+filterHelpV23=function(value){return filterHelpV24(value)};
+toggleHelpSectionV24=function(kind,id){
+ if(kind==="staff")v23StaffHelpSection=v23StaffHelpSection===id?null:id;else v23ShopHelpSection=v23ShopHelpSection===id?null:id;
+ v26HelpFocusId=id;renderOverlay();
+ requestAnimationFrame(()=>{
+  filterHelpV24(v26HelpQuery);
+  const list=document.querySelector('.v23HelpList'),item=document.querySelector(`.v23HelpItem[data-help-id="${CSS.escape(id)}"]`);
+  if(list&&item){
+   const target=Math.max(0,item.offsetTop-list.offsetTop-4);
+   list.scrollTo({top:target,behavior:'smooth'});
+  }
+  v26HelpFocusId=null;
+ });
+};
+const openStaffHelpV25ForV252=openStaffHelp;
+openStaffHelp=function(){v26HelpQuery="";v23StaffHelpSection=null;openStaffHelpV25ForV252()};
+const openShopHelpV25ForV252=openShopHelp;
+openShopHelp=function(){v26HelpQuery="";v23ShopHelpSection=null;openShopHelpV25ForV252()};
+
+/* Generic modal layout: content scrolls, action buttons remain outside the scroll area. */
+modalShell=function(title,subtitle,body,actions){
+ return `<div class="modalBack" role="dialog" aria-modal="true"><div class="modalSheet v26ModalSheet"><div class="modalHead"><div><h2 style="margin:0">${esc(title)}</h2>${subtitle?`<div class="muted small">${esc(subtitle)}</div>`:""}</div><button class="closeBtn" type="button" onclick="closeUiModal()" aria-label="Закрыть">×</button></div><div class="v26ModalBody">${body}</div><div class="modalActions">${actions}</div></div></div>`;
+};
+
+function v26GateButton(inputId,buttonId){
+ const input=document.getElementById(inputId),btn=document.getElementById(buttonId);if(!input||!btn)return;
+ btn.disabled=!String(input.value||'').trim();
+}
+const uiModalHtmlV25ForV252=uiModalHtml;
+uiModalHtml=function(){
+ if(uiModal?.kind==='createStaff')return modalShell('Новый сотрудник','Введите имя — после этого кнопка «Создать» станет активной',`<div class="field"><label>Имя сотрудника</label><input id="m_staff_name" class="input" placeholder="Имя" oninput="v26GateButton('m_staff_name','m_staff_create_submit')"></div><div class="field"><label>Роль</label><select id="m_staff_role" class="input"><option value="viewer">Просмотр</option><option value="admin">Администратор</option></select></div>`,`<button class="btn secondary" type="button" onclick="closeUiModal()">Отмена</button><button id="m_staff_create_submit" class="btn" type="button" disabled onclick="submitCreateStaff()">Создать</button>`);
+ if(uiModal?.kind==='addShop')return modalShell('Новая точка','Введите название — ссылка создастся автоматически',`<div class="field"><label>Название магазина / точки</label><input id="m_shop_name" class="input" placeholder="Название" oninput="v26GateButton('m_shop_name','m_shop_create_submit')"></div>`,`<button class="btn secondary" type="button" onclick="closeUiModal()">Отмена</button><button id="m_shop_create_submit" class="btn" type="button" disabled onclick="submitAddShop()">Добавить</button>`);
+ if(uiModal?.kind==='addCategory')return modalShell('Новая категория','Введите название категории',`<div class="field"><label>Название категории</label><input id="m_category_name" class="input" placeholder="Например, Напитки" oninput="v26GateButton('m_category_name','m_category_create_submit')"></div>`,`<button class="btn secondary" type="button" onclick="closeUiModal()">Отмена</button><button id="m_category_create_submit" class="btn" type="button" disabled onclick="submitAddCategory()">Добавить</button>`);
+ if(uiModal?.kind==='addProduct')return modalShell('Новый товар','Заполните название, категорию и цену',`<div class="field"><label>Название</label><input id="m_product_name" class="input" placeholder="Например, Самса с мясом" oninput="v26GateButton('m_product_name','m_product_create_submit')"></div><div class="field"><label>Категория</label><select id="m_product_category" class="input">${categoryOptions(menuCategories?.find(c=>c.name==='Другое')?.name||menuCategories?.[0]?.name||'Другое')}</select></div><div class="field"><label>Цена ₸</label><input id="m_product_price" class="input" type="number" inputmode="numeric" value="180" min="0"></div>`,`<button class="btn secondary" type="button" onclick="closeUiModal()">Отмена</button><button id="m_product_create_submit" class="btn" type="button" disabled onclick="submitAddProduct()">Добавить</button>`);
+ return uiModalHtmlV25ForV252();
+};
+
+/* Push preferences now save immediately. The bottom button only closes the sheet. */
+let v26PushSaveSeq=0;
+async function savePushPrefsV252Instant(){
+ if(!pushRuntimeEndpoint)return;
+ const seq=++v26PushSaveSeq;
+ const prefs={new_orders:!!document.getElementById('push_new')?.checked,additions:!!document.getElementById('push_add')?.checked,status_changes:!!document.getElementById('push_status')?.checked};
+ const sound=!!document.getElementById('push_sound')?.checked;
+ localStorage.setItem('ceh_v23_sound',sound?'1':'0');
+ const note=document.getElementById('v26_push_saved');if(note){note.className='v26InlineSaved';note.textContent='Сохраняем…'}
+ const r=await client.rpc('v23_push_preferences',{target_endpoint:pushRuntimeEndpoint,want_new_orders:prefs.new_orders,want_additions:prefs.additions,want_status_changes:prefs.status_changes});
+ if(seq!==v26PushSaveSeq)return;
+ if(r.error){if(note){note.className='v26InlineSaved error';note.textContent='Не удалось сохранить. Проверьте связь.'}return}
+ pushPrefs=prefs;if(note){note.className='v26InlineSaved';note.textContent='Сохранено ✓'}
+}
+notificationModalV24=function(){
+ const supported=('Notification' in window)&&('serviceWorker' in navigator)&&('PushManager' in window),perm=('Notification' in window)?Notification.permission:'unsupported',sound=localStorage.getItem('ceh_v23_sound')!=='0';
+ const permissionText=!supported?'Этот браузер не поддерживает системные уведомления':perm==='granted'?'Телефон / браузер разрешает уведомления':perm==='denied'?'Уведомления запрещены в настройках телефона / браузера':'Разрешение ещё не запрашивалось';
+ const devices=(v25PushDevices||[]).map(d=>`<div class="v25Device ${d.is_current?'current':''}"><div><b>${esc(v25DeviceName(d.user_agent))}${d.is_current?' • это устройство':''}</b><small>${d.updated_at?`Подключено / обновлено: ${esc(v25ShortWhen(d.updated_at))}`:''}</small></div><button class="btn ${d.is_current?'danger':'secondary'}" type="button" onclick="removePushDeviceV25('${d.id}')">${d.is_current?'Выключить здесь':'Отключить'}</button></div>`).join('');
+ const body=`<div class="v25NotifyCard"><div class="v25NotifyHeader"><div><b>Уведомления на этом устройстве</b><small>${esc(permissionText)}</small></div><span class="${pushEnabled?'v25StatusGood':'v25StatusOff'}">${pushEnabled?'Включены':'Выключены'}</span></div>${pushEnabled?`<label class="v25ToggleRow"><span class="v25ToggleText"><b>Новые заказы</b><small>Когда магазин отправил новый заказ</small></span><input id="push_new" class="v25Switch" type="checkbox" ${pushPrefs.new_orders?'checked':''} onchange="savePushPrefsV252Instant()"></label><label class="v25ToggleRow"><span class="v25ToggleText"><b>Дополнения</b><small>Когда магазин добавил товар в уже созданный заказ</small></span><input id="push_add" class="v25Switch" type="checkbox" ${pushPrefs.additions?'checked':''} onchange="savePushPrefsV252Instant()"></label><label class="v25ToggleRow"><span class="v25ToggleText"><b>Изменения статуса</b><small>Необязательно: таких уведомлений может быть много</small></span><input id="push_status" class="v25Switch" type="checkbox" ${pushPrefs.status_changes?'checked':''} onchange="savePushPrefsV252Instant()"></label><label class="v25ToggleRow"><span class="v25ToggleText"><b>Звук, когда сайт открыт</b><small>Системный звук Push в фоне настраивается телефоном</small></span><input id="push_sound" class="v25Switch" type="checkbox" ${sound?'checked':''} onchange="savePushPrefsV252Instant()"></label><div id="v26_push_saved" class="v26InlineSaved">Изменения сохраняются сразу.</div>`:''}</div><div class="card" style="margin-top:10px;box-shadow:none"><div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px"><div><b>Мои устройства</b><div class="small muted">Телефон и компьютер включаются отдельно.</div></div>${v25PushDevices.length>1?`<button class="btn danger" type="button" onclick="clearOtherPushDevicesV25()">Отключить остальные</button>`:''}</div><div class="v25DeviceList">${devices||`<div class="small muted">Активных устройств пока нет.</div>`}</div></div>`;
+ return modalShell('Уведомления','Настройки только для ваших устройств',body,pushEnabled?`<button class="btn danger" type="button" onclick="disablePushV24()">Выключить здесь</button><button class="btn secondary" type="button" onclick="closeUiModal()">Готово</button>`:`<button class="btn secondary" type="button" onclick="closeUiModal()">Позже</button><button class="btn" type="button" onclick="enablePushV24()">Включить на этом устройстве</button>`);
+};
+
 
 function startPolling(){startLiveSync()}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&client)syncLive("focus")});
