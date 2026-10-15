@@ -1,4 +1,4 @@
-const CACHE='ceh-v25-universal-1';
+const CACHE='ceh-v262-real-update-1';
 const CORE=['./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install',event=>{
