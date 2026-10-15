@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<title>Цех — V26.1 UNIVERSAL</title>
+<title>Цех — V26.3 REAL UI</title>
 <meta name="theme-color" content="#f4b64c">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -1118,6 +1118,28 @@ table{
 .invoiceControls{align-items:start!important}
 .invoiceControls .input{min-height:52px!important}
 </style>
+<style id="v263-real-ui">
+/* ===== V26.3 REAL UI ===== */
+.v263DateButton{width:100%;min-height:56px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--text);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:900;cursor:pointer}
+.v263DateButton .dateMain{display:flex;flex-direction:column;align-items:flex-start;min-width:0}.v263DateButton small{font-size:11px;color:var(--muted);font-weight:750}.v263DateButton b{font-size:17px}
+.v263DateQuick{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.v263DateQuick button{border:1px solid #eadfcf;background:#fff8e9;border-radius:999px;min-height:38px;padding:7px 12px;font-weight:850;color:#76551a}
+.v263DateBack{position:fixed;inset:0;z-index:1200;background:rgba(20,20,18,.48);display:flex;align-items:flex-end;justify-content:center;padding:12px;backdrop-filter:blur(4px)}
+.v263DateSheet{width:min(520px,100%);max-height:min(88dvh,720px);overflow:auto;background:#fffdf9;border:1px solid #e7ded1;border-radius:28px 28px 20px 20px;box-shadow:0 28px 80px rgba(20,16,10,.28);padding:18px}
+.v263DateTop{display:flex;align-items:center;justify-content:space-between;gap:12px}.v263DateTop h2{margin:0;font-size:24px}.v263DateClose{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:26px}
+.v263MonthBar{display:grid;grid-template-columns:48px 1fr 48px;align-items:center;gap:8px;margin:14px 0 10px}.v263MonthBar button{height:46px;border:1px solid var(--line);background:#fff;border-radius:14px;font-size:22px}.v263MonthTitle{text-align:center;font-weight:950;font-size:18px}
+.v263Week,.v263Days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.v263Week span{text-align:center;color:var(--muted);font-size:11px;font-weight:850;padding:5px 0}.v263Day{aspect-ratio:1;border:1px solid transparent;background:#fff;border-radius:13px;font-weight:850;min-height:40px}.v263Day:hover{background:#fff7e8}.v263Day.muted{opacity:.28;pointer-events:none}.v263Day.today{border-color:#e9bb57}.v263Day.selected{background:#f4b64c;color:#2e2415;border-color:#d89a29;box-shadow:0 6px 18px rgba(216,154,41,.22)}
+.v263DateFooter{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.v263DateFooter button{flex:1 1 120px;min-height:46px;border-radius:14px;border:1px solid var(--line);background:#fff;font-weight:900}.v263DateFooter .primary{background:var(--accent);border-color:var(--accent)}
+.v263ShopOrders{display:grid;gap:10px}.v263OrderCard{border:1px solid #e9dfd2;background:#fff;border-radius:18px;overflow:hidden}.v263OrderHead{width:100%;border:0;background:#fff;color:inherit;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) auto auto 32px;gap:8px;align-items:center;text-align:left}.v263OrderMain,.v263OrderSummary{display:flex;flex-direction:column;min-width:0}.v263OrderMain b{font-size:17px}.v263OrderMain small,.v263OrderSummary small{font-size:11px;color:var(--muted);margin-top:2px}.v263OrderSummary{text-align:right}.v263OrderSummary b{font-size:16px;white-space:nowrap}.v263OrderChevron{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff4d7;font-weight:950}.v263OrderBody{border-top:1px solid #eee4d7;padding:11px 12px 13px;background:#fffdf9}
+.shopPage .product{transition:box-shadow .15s ease,transform .15s ease}.shopPage .product:focus-within{box-shadow:0 0 0 3px rgba(244,182,76,.18)}
+@media(max-width:640px){
+ .shopPage{padding-bottom:128px!important}.shopPage .card{padding:12px!important}.shopPage .card>h2{font-size:25px!important}
+ .product{grid-template-columns:54px minmax(0,1fr)!important;gap:10px!important;padding:11px!important}.productPhoto{width:54px!important;height:54px!important}.productName{font-size:16px!important}.productDesc{font-size:11px!important}
+ .qty{grid-column:1/-1!important;grid-template-columns:44px 60px 44px 56px!important;justify-content:end!important;gap:6px!important}.qty button,.qty .qtyInput{height:44px!important;min-height:44px!important;border-radius:13px!important}
+ .cartDock{left:8px!important;right:8px!important;bottom:max(8px,env(safe-area-inset-bottom))!important}.cartDock button{min-height:60px!important;border-radius:18px!important;padding:9px 12px!important}.cartDock .cartMain>span:first-child{font-size:15px!important}.cartDock .cartSub{font-size:10.5px!important}.cartDock b{font-size:17px!important}
+ .v263OrderHead{grid-template-columns:minmax(0,1fr) auto 28px;grid-template-areas:'main pill chev' 'sum sum chev'}.v263OrderMain{grid-area:main}.v263OrderSummary{grid-area:sum;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}.v263OrderSummary small{margin:0}.v263OrderHead>.pill{grid-area:pill}.v263OrderChevron{grid-area:chev}.v263DateSheet{padding:15px;border-radius:24px 24px 16px 16px}.v263DateTop h2{font-size:21px}.v263Day{min-height:38px;border-radius:11px}
+}
+@media(max-width:360px){.v263Week,.v263Days{gap:3px}.v263Day{min-height:35px;font-size:13px}.qty{grid-template-columns:40px 54px 40px 52px!important}}
+</style>
 
 </head>
 <body>
@@ -1125,13 +1147,13 @@ table{
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 <script>
-const BUILD_VERSION = "V26.2 REAL UPDATE";
+const BUILD_VERSION = "V26.3 REAL UI";
 const SB_URL = "https://lzzfaxbthyxdogmegftb.supabase.co";
 const SB_KEY = "sb_publishable_IaDCRHBDp4tIq0Nz5QIh_g_md0QTgwL";
 const params = new URLSearchParams(location.search);
 const SHOP_TOKEN = params.get("shop");
 const STAFF_TOKEN = params.get("staff");
-const BUILD = "V26.2-REAL-UPDATE-2026-10-16";
+const BUILD = "V26.3-REAL-UI-2026-10-16";
 const app = document.getElementById("app");
 const modalRoot = document.getElementById("modalRoot");
 let installPromptEvent=null, dynamicManifestUrl=null, liveState="connecting";
@@ -1432,18 +1454,29 @@ function rememberLaunch(){try{localStorage.setItem("ceh_last_launch",location.pa
 async function registerServiceWorker(){
  try{
    if(!("serviceWorker" in navigator))return;
-   const resetKey="ceh_cache_reset_v262";
+   const resetKey="ceh_cache_reset_v263";
    if(localStorage.getItem(resetKey)!==BUILD){
      try{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()))}catch(_){}
      try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)))}}catch(_){}
      localStorage.setItem(resetKey,BUILD);
    }
-   const reg=await navigator.serviceWorker.register("./sw.js?v=262",{updateViaCache:"none"});
+   const reg=await navigator.serviceWorker.register("./sw.js?v=263",{updateViaCache:"none"});
    try{await reg.update()}catch(_){}
  }catch(e){console.warn("SW",e)}
 }
+function normalizeV263Url(){
+ try{
+  if(!SHOP_TOKEN&&!STAFF_TOKEN)return;
+  const q=new URLSearchParams();q.set("v","263");
+  if(SHOP_TOKEN)q.set("shop",SHOP_TOKEN);
+  if(STAFF_TOKEN)q.set("staff",STAFF_TOKEN);
+  const next=location.pathname+"?"+q.toString()+location.hash;
+  if(location.search!=="?"+q.toString())history.replaceState(null,"",next);
+ }catch(_){}
+}
 async function boot(){
   try{
+    normalizeV263Url();
     setupDynamicManifest();
     await registerServiceWorker();
     if(!SHOP_TOKEN&&!STAFF_TOKEN){
@@ -1455,7 +1488,7 @@ async function boot(){
   }catch(e){console.error(e);errBox(e)}
 }
 function renderHome(){
- app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V26.2 REAL UPDATE</b></p></div></div>`;
+ app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V26.3 REAL UI</b></p></div></div>`;
 }
 async function loadShop(){
  const r=await client.rpc("v19_shop_snapshot");
@@ -1913,6 +1946,26 @@ function invoiceStateHtml(){
  if(invoiceLoadState==="fallback")return `<div class="invoiceLoadNote error"><b>Серверная выборка накладной временно недоступна.</b><br>Показываю заказы за эту дату из уже загруженной панели. Кнопка «Обновить» попробует ещё раз.</div>`;
  return "";
 }
+
+/* ===== V26.3 custom invoice date picker ===== */
+let v263DatePickerOpen=false;
+let v263PickerMonth=invoiceDate?invoiceDate.slice(0,7):todayBiz().slice(0,7);
+function v263DateLabel(d){try{return new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Almaty',weekday:'short',day:'2-digit',month:'long',year:'numeric'}).format(new Date(`${d}T12:00:00+05:00`))}catch(_){return d}}
+function v263InvoiceDateControl(){return `<button type="button" class="v263DateButton" onclick="v263OpenDatePicker()"><span class="dateMain"><small>Выбрано</small><b>${esc(v263DateLabel(invoiceDate))}</b></span><span aria-hidden="true">📅</span></button><div class="v263DateQuick"><button type="button" onclick="changeInvoiceDate(todayBiz())">Сегодня</button><button type="button" onclick="v263SetRelativeDate(-1)">Вчера</button><button type="button" onclick="changeInvoiceDate(tomorrowBiz())">Завтра</button></div>`}
+function v263SetRelativeDate(delta){const d=new Date(`${todayBiz()}T12:00:00+05:00`);d.setDate(d.getDate()+delta);const val=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Almaty',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);changeInvoiceDate(val)}
+function v263OpenDatePicker(){v263DatePickerOpen=true;v263PickerMonth=(invoiceDate||todayBiz()).slice(0,7);v263RenderDatePicker()}
+function v263CloseDatePicker(){v263DatePickerOpen=false;document.getElementById('v263DatePicker')?.remove()}
+function v263ShiftMonth(delta){const [y,m]=v263PickerMonth.split('-').map(Number);const d=new Date(y,m-1+delta,1);v263PickerMonth=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;v263RenderDatePicker()}
+function v263SelectDate(d){invoiceDate=d;v263CloseDatePicker();loadInvoiceOrders(invoiceDate);updateStaffPanelPreserve()}
+function v263RenderDatePicker(){
+ document.getElementById('v263DatePicker')?.remove();if(!v263DatePickerOpen)return;
+ const [y,m]=v263PickerMonth.split('-').map(Number),first=new Date(y,m-1,1),days=new Date(y,m,0).getDate(),offset=(first.getDay()+6)%7;
+ const monthTitle=new Intl.DateTimeFormat('ru-RU',{month:'long',year:'numeric'}).format(first);
+ let cells='';for(let i=0;i<offset;i++)cells+='<span></span>';for(let day=1;day<=days;day++){const d=`${y}-${String(m).padStart(2,'0')}-${String(day).padStart(2,'0')}`;cells+=`<button type="button" class="v263Day ${d===todayBiz()?'today':''} ${d===invoiceDate?'selected':''}" onclick="v263SelectDate('${d}')">${day}</button>`}
+ const wrap=document.createElement('div');wrap.id='v263DatePicker';wrap.className='v263DateBack';wrap.innerHTML=`<div class="v263DateSheet" role="dialog" aria-modal="true" aria-label="Выбор даты накладной"><div class="v263DateTop"><div><h2>Дата накладной</h2><div class="small muted">Выберите день просмотра</div></div><button class="v263DateClose" onclick="v263CloseDatePicker()" aria-label="Закрыть">×</button></div><div class="v263MonthBar"><button onclick="v263ShiftMonth(-1)" aria-label="Предыдущий месяц">‹</button><div class="v263MonthTitle">${esc(monthTitle)}</div><button onclick="v263ShiftMonth(1)" aria-label="Следующий месяц">›</button></div><div class="v263Week"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div><div class="v263Days">${cells}</div><div class="v263DateFooter"><button onclick="v263SetRelativeDate(-1);v263CloseDatePicker()">Вчера</button><button class="primary" onclick="v263SelectDate(todayBiz())">Сегодня</button><button onclick="v263SelectDate(tomorrowBiz())">Завтра</button></div></div>`;
+ wrap.addEventListener('click',e=>{if(e.target===wrap)v263CloseDatePicker()});document.body.appendChild(wrap)
+}
+
 function invoicesPanel(){
  const options=[`<option value="all" ${invoiceShop==="all"?"selected":""}>Все магазины</option>`,...activeShopsOrdered().map(s=>`<option value="${s.id}" ${invoiceShop===s.id?"selected":""}>${esc(s.name)}</option>`)];
  const os=selectedInvoiceOrders();
@@ -1921,7 +1974,7 @@ function invoicesPanel(){
    ${invoiceStateHtml()}
    <div class="invoiceControls">
      <div class="field"><label>Магазин</label><select class="input" onchange="changeInvoiceShop(this.value,this)">${options.join("")}</select></div>
-     <div class="field"><label>Дата накладной</label><input type="date" class="input" value="${invoiceDate}" oninput="changeInvoiceDate(this.value,this)"><div class="v262DateQuick"><button type="button" onclick="changeInvoiceDate(todayBiz())">Сегодня</button><button type="button" onclick="changeInvoiceDate(tomorrowBiz())">Завтра</button></div><div class="small muted v262DateHelp">Это дата просмотра накладной. Здесь можно смотреть и прошлые дни — она не создаёт заказ задним числом.</div></div>
+     <div class="field"><label>Дата накладной</label>${v263InvoiceDateControl()}<div class="small muted v262DateHelp">Это только дата просмотра накладной. Можно открыть прошлый день — заказ задним числом здесь не создаётся.</div></div>
    </div>
    <div class="invoiceGrand">
      <div class="stat"><span class="muted">Заказов</span><b>${os.length}</b></div>
@@ -2189,7 +2242,7 @@ async function confirmRemoveProductPhoto(){
  finally{uiBusy=false}
 }
 
-function shopUrl(s){return location.origin+location.pathname+"?v=262&shop="+encodeURIComponent(s.access_token)}
+function shopUrl(s){return location.origin+location.pathname+"?v=263&shop="+encodeURIComponent(s.access_token)}
 const SHOP_ORDER=["Алихан","Ағзам","Наташа","Алия","Рая (Айым)","Биляль","Береке","Бағила","Айдана","Рысбек","Бақытгүл","Цех","Роддом"];
 function activeShopsOrdered(){return allShopsOrdered().filter(s=>s.active)}
 function allShopsOrdered(){
@@ -2248,7 +2301,7 @@ async function confirmDeleteShop(){
 }
 async function copy(t){try{await navigator.clipboard.writeText(t);toast("Ссылка скопирована")}catch(e){openUiModal("copyFallback",{text:t})}}
 function staffRoleLabel(r){return r==="owner"?"Главная":r==="admin"?"Администратор":"Просмотр"}
-function staffUrlFromToken(token){return location.origin+location.pathname+"?v=262&staff="+encodeURIComponent(token||"")}
+function staffUrlFromToken(token){return location.origin+location.pathname+"?v=263&staff="+encodeURIComponent(token||"")}
 function isSelfMember(m){return !!(m&&m.access_token&&STAFF_TOKEN&&m.access_token===STAFF_TOKEN)}
 function staffPanel(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
@@ -2820,11 +2873,30 @@ settingsPanel=function(){
 }
 
 /* Header: clean production UI, version stays only in Settings. */
-renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>•</span><span class="v262BuildMini">V26.2</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
-renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • <span class="v262BuildMini">V26.2</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
+renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>•</span><span class="v262BuildMini">V26.3</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
+renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • <span class="v262BuildMini">V26.3</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
 
 /* Cleaner shop history on all screen widths. */
-shopOrdersHtml=function(){if(!orders.length)return `<div class="empty">Заказов пока нет.</div>`;return orders.map(o=>`<div class="order"><div class="orderhead"><div><b>Заказ #${o.order_number}</b><div class="small muted">${orderDayLabel(o.order_date)} • ${v24TimeOnly(o.created_at)}</div></div><span class="pill s-${o.status}">${st(o.status)}</span></div><div style="margin-top:8px">${(o.order_items||[]).map(i=>`<div class="itemLine"><span>${esc(i.product_name)} × <b>${i.quantity}</b></span><b>${money(i.unit_price*i.quantity)}</b></div>`).join("")}</div><div class="orderTotal" style="margin-top:10px">${money(total(o))}</div>${additionListHtml(o)}</div>`).join("")}
+let v263ShopOrderOpenId=null;
+function v263ToggleShopOrder(id){v263ShopOrderOpenId=String(v263ShopOrderOpenId)===String(id)?null:String(id);renderShopPreserve()}
+shopOrdersHtml=function(){
+ if(!orders.length)return `<div class="empty">Заказов пока нет.</div>`;
+ const sorted=[...orders].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+ if(v263ShopOrderOpenId===null&&sorted[0])v263ShopOrderOpenId=String(sorted[0].id);
+ return `<div class="v263ShopOrders">${sorted.map(o=>{
+   const open=String(v263ShopOrderOpenId)===String(o.id);
+   const items=o.order_items||[];
+   const units=items.reduce((n,i)=>n+(Number(i.quantity)||0),0);
+   return `<section class="v263OrderCard ${open?'open':''}">
+     <button type="button" class="v263OrderHead" onclick="v263ToggleShopOrder('${o.id}')">
+       <span class="v263OrderMain"><b>Заказ #${o.order_number}</b><small>${esc(orderDayLabel(o.order_date))} • ${esc(v24TimeOnly(o.created_at))}</small></span>
+       <span class="v263OrderSummary"><b>${money(total(o))}</b><small>${items.length} поз. • ${units} шт.</small></span>
+       <span class="pill s-${o.status}">${st(o.status)}</span><span class="v263OrderChevron">${open?'⌃':'⌄'}</span>
+     </button>
+     ${open?`<div class="v263OrderBody"><div>${items.map(i=>`<div class="itemLine"><span>${esc(i.product_name)} × <b>${i.quantity}</b></span><b>${money(i.unit_price*i.quantity)}</b></div>`).join('')}</div>${additionListHtml(o)}</div>`:''}
+   </section>`
+ }).join('')}</div>`
+}
 
 
 /* Final V25 compatibility fixes for names inherited from V23/V24. */
