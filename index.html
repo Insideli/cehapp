@@ -644,7 +644,7 @@ body{background:radial-gradient(circle at 85% 0,#fff3dd 0,#fffaf2 28%,#f6f0e6 10
 @media(max-width:360px){.v24DayPick{grid-template-columns:1fr}}
 
 /* =========================================================
-   V26.1 UNIVERSAL DEVICES — phone-first polish for 320px..desktop
+   V26.2 REAL UPDATE — phone-first polish for 320px..desktop
    ========================================================= */
 html{scroll-behavior:smooth}
 body{font-size:16px;line-height:1.35}
@@ -689,7 +689,7 @@ button:focus-visible,.btn:focus-visible,.input:focus-visible{outline:3px solid r
 
 
 /* =========================================================
-   V25.2 UNIVERSAL POLISH — navigation/help/modal/tap fixes
+   V26.2 REAL UPDATE — navigation/help/modal/tap fixes
    ========================================================= */
 button,.btn,.v23HelpToggle,.v25CompactHead,.v23Shell .nav button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .btn,.v23HelpToggle,.v25CompactHead,.v23Shell .nav button,.v25Switch{transition:transform .08s ease,filter .12s ease,background-color .12s ease,border-color .12s ease,opacity .12s ease}
@@ -744,7 +744,7 @@ button,.btn,.v23HelpToggle,.v25CompactHead,.v23Shell .nav button{touch-action:ma
 
 <style id="v26_1_universal_devices">
 /* =========================================================
-   V26.1 UNIVERSAL DEVICES
+   V26.2 REAL UPDATE
    Adaptive polish for phones, tablets, iPad/iPhone, Android,
    laptops and desktop. Business logic is untouched.
    ========================================================= */
@@ -1035,19 +1035,103 @@ table{
 }
 </style>
 
+
+<style id="v262-real-update">
+/* ===== V26.2 REAL UPDATE: final visible/mobile layer ===== */
+.v262BuildMini{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:2px 7px;border-radius:999px;background:#fff1bd;color:#8b6415;
+  font-size:10px;font-weight:900;letter-spacing:.02em;white-space:nowrap
+}
+.v262DateQuick{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.v262DateQuick button{
+  appearance:none;border:1px solid #eadfcf;background:#fffaf1;color:#76551a;
+  border-radius:999px;padding:7px 12px;font:inherit;font-size:12px;font-weight:850;cursor:pointer
+}
+.v262DateHelp{margin-top:7px;line-height:1.35}
+
+/* Shop: history is denser and the basket never sits on top of the last order. */
+.shopPage{padding-bottom:150px!important}
+.shopPage .order{padding:14px!important;border-radius:20px!important}
+.shopPage .orderhead{align-items:flex-start!important}
+.shopPage .order .itemLine{gap:10px!important}
+.shopPage .order .itemLine span{min-width:0;overflow-wrap:anywhere}
+.shopPage .orderTotal{font-size:26px!important;line-height:1.05!important}
+.cartDock{z-index:120!important}
+.cartDock button{box-shadow:0 16px 38px rgba(42,34,20,.24)!important}
+
+/* Mobile: prevent cramped cards, clipping and the "desktop squeezed into phone" look. */
+@media(max-width:899px){
+  .shopPage .g2{grid-template-columns:1fr!important}
+  .shopPage>.grid{gap:14px!important}
+  .shopPage .card{min-width:0!important}
+  .shopPage .grid.g2>.card{overflow:visible!important}
+}
+@media(max-width:640px){
+  .wrap.v23Shell.shopPage{padding-left:10px!important;padding-right:10px!important}
+  .shopPage{padding-bottom:165px!important}
+  .v23Header{position:sticky!important;top:0!important;z-index:90!important}
+  .v23ShopHero{margin-top:8px!important}
+  .v23ShopHero h1{font-size:clamp(25px,8vw,31px)!important;line-height:1.02!important}
+  .shopPage .card>h2{font-size:26px!important;margin-bottom:12px!important}
+  .product{
+    grid-template-columns:58px minmax(0,1fr)!important;
+    align-items:start!important;padding:12px!important;border-radius:18px!important
+  }
+  .productPhoto{width:58px!important;height:58px!important;border-radius:15px!important}
+  .productName{font-size:16px!important;line-height:1.15!important}
+  .productDesc{font-size:11.5px!important;line-height:1.25!important}
+  .qty{
+    grid-column:1/-1!important;
+    display:grid!important;grid-template-columns:46px 58px 46px 58px!important;
+    justify-content:end!important;gap:7px!important;margin-top:4px!important
+  }
+  .qty button,.qty .qtyInput{width:100%!important;height:44px!important;min-height:44px!important}
+  .catBar{margin-left:-2px!important;margin-right:-2px!important;padding-left:2px!important}
+  .shopPage .order{padding:12px!important}
+  .shopPage .orderhead>b,.shopPage .orderhead b{font-size:18px!important}
+  .shopPage .orderTotal{font-size:24px!important}
+  .cartDock{left:10px!important;right:10px!important;width:auto!important;bottom:max(10px,env(safe-area-inset-bottom))!important}
+  .cartDock button{min-height:68px!important;border-radius:20px!important;padding:11px 14px!important}
+  .cartDock .cartMain{min-width:0!important}
+  .cartDock .cartMain>span:first-child{font-size:16px!important;line-height:1.15!important}
+  .cartDock .cartSub{font-size:11px!important;line-height:1.2!important}
+  .cartDock b{font-size:18px!important;white-space:nowrap!important}
+  .invoiceControls{grid-template-columns:1fr!important}
+  .invoiceControls .field{min-width:0!important}
+}
+@media(max-width:380px){
+  .qty{grid-template-columns:42px 52px 42px 52px!important;gap:5px!important}
+  .product{grid-template-columns:52px minmax(0,1fr)!important;padding:10px!important}
+  .productPhoto{width:52px!important;height:52px!important}
+  .cartDock .cartMain>span:first-child{font-size:15px!important}
+  .cartDock b{font-size:17px!important}
+}
+
+/* Desktop/tablet: keep basket out of the content column. */
+@media(min-width:900px){
+  .shopPage{padding-bottom:34px!important}
+  .cartDock{left:auto!important;right:22px!important;width:min(430px,36vw)!important;transform:none!important;bottom:22px!important}
+}
+
+/* Invoice controls stay readable across browsers; native date picker may look different by OS. */
+.invoiceControls{align-items:start!important}
+.invoiceControls .input{min-height:52px!important}
+</style>
+
 </head>
 <body>
 <div id="app"><div class="loading">Подключаемся к базе…</div></div>
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 <script>
-const BUILD_VERSION = "V26.1.2 UNIVERSAL POLISH";
+const BUILD_VERSION = "V26.2 REAL UPDATE";
 const SB_URL = "https://lzzfaxbthyxdogmegftb.supabase.co";
 const SB_KEY = "sb_publishable_IaDCRHBDp4tIq0Nz5QIh_g_md0QTgwL";
 const params = new URLSearchParams(location.search);
 const SHOP_TOKEN = params.get("shop");
 const STAFF_TOKEN = params.get("staff");
-const BUILD = "V25.2-UNIVERSAL-POLISH-2026-10-05";
+const BUILD = "V26.2-REAL-UPDATE-2026-10-16";
 const app = document.getElementById("app");
 const modalRoot = document.getElementById("modalRoot");
 let installPromptEvent=null, dynamicManifestUrl=null, liveState="connecting";
@@ -1348,13 +1432,13 @@ function rememberLaunch(){try{localStorage.setItem("ceh_last_launch",location.pa
 async function registerServiceWorker(){
  try{
    if(!("serviceWorker" in navigator))return;
-   const resetKey="ceh_cache_reset_v25";
+   const resetKey="ceh_cache_reset_v262";
    if(localStorage.getItem(resetKey)!==BUILD){
      try{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()))}catch(_){}
      try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)))}}catch(_){}
      localStorage.setItem(resetKey,BUILD);
    }
-   const reg=await navigator.serviceWorker.register("./sw.js?v=25",{updateViaCache:"none"});
+   const reg=await navigator.serviceWorker.register("./sw.js?v=262",{updateViaCache:"none"});
    try{await reg.update()}catch(_){}
  }catch(e){console.warn("SW",e)}
 }
@@ -1371,7 +1455,7 @@ async function boot(){
   }catch(e){console.error(e);errBox(e)}
 }
 function renderHome(){
- app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V25.2 UNIVERSAL POLISH</b></p></div></div>`;
+ app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V26.2 REAL UPDATE</b></p></div></div>`;
 }
 async function loadShop(){
  const r=await client.rpc("v19_shop_snapshot");
@@ -1837,7 +1921,7 @@ function invoicesPanel(){
    ${invoiceStateHtml()}
    <div class="invoiceControls">
      <div class="field"><label>Магазин</label><select class="input" onchange="changeInvoiceShop(this.value,this)">${options.join("")}</select></div>
-     <div class="field"><label>Дата</label><input type="date" class="input" value="${invoiceDate}" oninput="changeInvoiceDate(this.value,this)"></div>
+     <div class="field"><label>Дата накладной</label><input type="date" class="input" value="${invoiceDate}" oninput="changeInvoiceDate(this.value,this)"><div class="v262DateQuick"><button type="button" onclick="changeInvoiceDate(todayBiz())">Сегодня</button><button type="button" onclick="changeInvoiceDate(tomorrowBiz())">Завтра</button></div><div class="small muted v262DateHelp">Это дата просмотра накладной. Здесь можно смотреть и прошлые дни — она не создаёт заказ задним числом.</div></div>
    </div>
    <div class="invoiceGrand">
      <div class="stat"><span class="muted">Заказов</span><b>${os.length}</b></div>
@@ -2105,7 +2189,7 @@ async function confirmRemoveProductPhoto(){
  finally{uiBusy=false}
 }
 
-function shopUrl(s){return location.origin+location.pathname+"?shop="+encodeURIComponent(s.access_token)}
+function shopUrl(s){return location.origin+location.pathname+"?v=262&shop="+encodeURIComponent(s.access_token)}
 const SHOP_ORDER=["Алихан","Ағзам","Наташа","Алия","Рая (Айым)","Биляль","Береке","Бағила","Айдана","Рысбек","Бақытгүл","Цех","Роддом"];
 function activeShopsOrdered(){return allShopsOrdered().filter(s=>s.active)}
 function allShopsOrdered(){
@@ -2164,7 +2248,7 @@ async function confirmDeleteShop(){
 }
 async function copy(t){try{await navigator.clipboard.writeText(t);toast("Ссылка скопирована")}catch(e){openUiModal("copyFallback",{text:t})}}
 function staffRoleLabel(r){return r==="owner"?"Главная":r==="admin"?"Администратор":"Просмотр"}
-function staffUrlFromToken(token){return location.origin+location.pathname+"?staff="+encodeURIComponent(token||"")}
+function staffUrlFromToken(token){return location.origin+location.pathname+"?v=262&staff="+encodeURIComponent(token||"")}
 function isSelfMember(m){return !!(m&&m.access_token&&STAFF_TOKEN&&m.access_token===STAFF_TOKEN)}
 function staffPanel(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
@@ -2630,7 +2714,7 @@ renderShop=function(){
 
 
 /* =========================================================
-   V26.1 UNIVERSAL DEVICES — universal mobile UI + device push controls
+   V26.2 REAL UPDATE — universal mobile UI + device push controls
    ========================================================= */
 let v25ShopOpenId=null,v25StaffOpenId=null,v25ProductOpenId=null,v25CategoryOpenId=null,v25OwnLinkVisible=false,v25PushDevices=[];
 
@@ -2732,12 +2816,12 @@ notificationModalV24=function(){
 settingsPanel=function(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
  const ownUrl=staffUrlFromToken(STAFF_TOKEN);
- return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V25.2 UNIVERSAL POLISH</div></div>${v24ScheduleCardHtml()}</div>`;
+ return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V26.2 REAL UPDATE</div></div>${v24ScheduleCardHtml()}</div>`;
 }
 
 /* Header: clean production UI, version stays only in Settings. */
-renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
-renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()}</div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
+renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>•</span><span class="v262BuildMini">V26.2</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
+renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • <span class="v262BuildMini">V26.2</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
 
 /* Cleaner shop history on all screen widths. */
 shopOrdersHtml=function(){if(!orders.length)return `<div class="empty">Заказов пока нет.</div>`;return orders.map(o=>`<div class="order"><div class="orderhead"><div><b>Заказ #${o.order_number}</b><div class="small muted">${orderDayLabel(o.order_date)} • ${v24TimeOnly(o.created_at)}</div></div><span class="pill s-${o.status}">${st(o.status)}</span></div><div style="margin-top:8px">${(o.order_items||[]).map(i=>`<div class="itemLine"><span>${esc(i.product_name)} × <b>${i.quantity}</b></span><b>${money(i.unit_price*i.quantity)}</b></div>`).join("")}</div><div class="orderTotal" style="margin-top:10px">${money(total(o))}</div>${additionListHtml(o)}</div>`).join("")}
@@ -2758,7 +2842,7 @@ ordersPanel=function(){
 
 
 /* =========================================================
-   V25.2 UNIVERSAL POLISH — runtime fixes
+   V26.2 REAL UPDATE — runtime fixes
    ========================================================= */
 let v26NavScrollLeft=0;
 let v26HelpQuery="";
