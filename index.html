@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<title>Цех — V26.3 REAL UI</title>
+<title>Цех — V26.4 STABLE</title>
 <meta name="theme-color" content="#f4b64c">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -1147,13 +1147,13 @@ table{
 <div id="toast" class="toast"></div>
 <div id="modalRoot"></div>
 <script>
-const BUILD_VERSION = "V26.3 REAL UI";
+const BUILD_VERSION = "V26.4 STABLE";
 const SB_URL = "https://lzzfaxbthyxdogmegftb.supabase.co";
 const SB_KEY = "sb_publishable_IaDCRHBDp4tIq0Nz5QIh_g_md0QTgwL";
 const params = new URLSearchParams(location.search);
 const SHOP_TOKEN = params.get("shop");
 const STAFF_TOKEN = params.get("staff");
-const BUILD = "V26.3-REAL-UI-2026-10-16";
+const BUILD = "V26.4-STABLE-2026-10-19";
 const app = document.getElementById("app");
 const modalRoot = document.getElementById("modalRoot");
 let installPromptEvent=null, dynamicManifestUrl=null, liveState="connecting";
@@ -1188,7 +1188,8 @@ function bizDateBounds(dateStr){
   return [start.toISOString(),end.toISOString()];
 }
 function money(n){return new Intl.NumberFormat("ru-RU").format(Number(n)||0)+" ₸"}
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2200)}
+let toastTimer=null;
+function toast(t){const e=document.getElementById("toast");if(!e)return;clearTimeout(toastTimer);e.textContent=t;e.style.display="block";toastTimer=setTimeout(()=>{e.style.display="none";toastTimer=null},2600)}
 function st(s){return ({new:"Новый",work:"В работе",ready:"Готов",done:"Выдан",cancelled:"Отменён"})[s]||s}
 function total(o){return (o.order_items||[]).reduce((a,i)=>a+(i.unit_price*i.quantity),0)}
 function randomToken(){const a=new Uint8Array(22);crypto.getRandomValues(a);return "shop_"+Array.from(a,x=>x.toString(16).padStart(2,"0")).join("")}
@@ -1454,20 +1455,14 @@ function rememberLaunch(){try{localStorage.setItem("ceh_last_launch",location.pa
 async function registerServiceWorker(){
  try{
    if(!("serviceWorker" in navigator))return;
-   const resetKey="ceh_cache_reset_v263";
-   if(localStorage.getItem(resetKey)!==BUILD){
-     try{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()))}catch(_){}
-     try{if("caches" in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)))}}catch(_){}
-     localStorage.setItem(resetKey,BUILD);
-   }
-   const reg=await navigator.serviceWorker.register("./sw.js?v=263",{updateViaCache:"none"});
+   const reg=await navigator.serviceWorker.register("./sw.js?v=264",{scope:"./",updateViaCache:"none"});
    try{await reg.update()}catch(_){}
  }catch(e){console.warn("SW",e)}
 }
-function normalizeV263Url(){
+function normalizeV264Url(){
  try{
   if(!SHOP_TOKEN&&!STAFF_TOKEN)return;
-  const q=new URLSearchParams();q.set("v","263");
+  const q=new URLSearchParams();q.set("v","264");
   if(SHOP_TOKEN)q.set("shop",SHOP_TOKEN);
   if(STAFF_TOKEN)q.set("staff",STAFF_TOKEN);
   const next=location.pathname+"?"+q.toString()+location.hash;
@@ -1476,7 +1471,7 @@ function normalizeV263Url(){
 }
 async function boot(){
   try{
-    normalizeV263Url();
+    normalizeV264Url();
     setupDynamicManifest();
     await registerServiceWorker();
     if(!SHOP_TOKEN&&!STAFF_TOKEN){
@@ -1488,7 +1483,7 @@ async function boot(){
   }catch(e){console.error(e);errBox(e)}
 }
 function renderHome(){
- app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V26.3 REAL UI</b></p></div></div>`;
+ app.innerHTML=`<div class="wrap"><div class="card" style="max-width:620px;margin:8vh auto"><h1>Цех • заказы</h1><p class="muted">Откройте персональную ссылку магазина или внутреннюю ссылку сотрудника.</p><p class="small muted">Если вы видите этот экран после публикации — сайт работает.</p><p class="small muted"><b>Сборка: V26.4 STABLE</b></p></div></div>`;
 }
 async function loadShop(){
  const r=await client.rpc("v19_shop_snapshot");
@@ -2242,7 +2237,7 @@ async function confirmRemoveProductPhoto(){
  finally{uiBusy=false}
 }
 
-function shopUrl(s){return location.origin+location.pathname+"?v=263&shop="+encodeURIComponent(s.access_token)}
+function shopUrl(s){return location.origin+location.pathname+"?v=264&shop="+encodeURIComponent(s.access_token)}
 const SHOP_ORDER=["Алихан","Ағзам","Наташа","Алия","Рая (Айым)","Биляль","Береке","Бағила","Айдана","Рысбек","Бақытгүл","Цех","Роддом"];
 function activeShopsOrdered(){return allShopsOrdered().filter(s=>s.active)}
 function allShopsOrdered(){
@@ -2301,7 +2296,7 @@ async function confirmDeleteShop(){
 }
 async function copy(t){try{await navigator.clipboard.writeText(t);toast("Ссылка скопирована")}catch(e){openUiModal("copyFallback",{text:t})}}
 function staffRoleLabel(r){return r==="owner"?"Главная":r==="admin"?"Администратор":"Просмотр"}
-function staffUrlFromToken(token){return location.origin+location.pathname+"?v=263&staff="+encodeURIComponent(token||"")}
+function staffUrlFromToken(token){return location.origin+location.pathname+"?v=264&staff="+encodeURIComponent(token||"")}
 function isSelfMember(m){return !!(m&&m.access_token&&STAFF_TOKEN&&m.access_token===STAFF_TOKEN)}
 function staffPanel(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
@@ -2626,14 +2621,55 @@ shopCartModalHtml=function(){
  </div></div>`;
 }
 
-/* Better server error on an old/stale tab. */
+/* V26.4: order commit is independent from Push/LIVE/history refresh. */
 placeOrder=async function(){
  const items=Object.entries(basket).map(([product_id,quantity])=>({product_id,quantity:Number(quantity)})).filter(x=>x.quantity>0);
  if(!items.length||!orderConfirmed||sendingOrder)return;
- sendingOrder=true;renderShopPreserve();
- const r=await client.rpc("v19_place_or_add_order",{items,target_date:orderTargetDate,order_note:""});
- if(r.error){sendingOrder=false;orderConfirmed=false;await loadScheduleV24();try{await loadShop();basket=Object.fromEntries(Object.entries(basket).filter(([id])=>products.some(p=>p.id===id&&p.active&&!p.archived)))}catch(_){};const msg=String(r.error.message||"");toast(/не принимает заказы|рабочий день/i.test(msg)?"Эта дата сейчас выходная. Выберите доступный рабочий день.":"Не удалось отправить. Проверьте заказ и попробуйте ещё раз.");renderShopPreserve();return}
- const result=r.data?.[0]||{};basket={};shopCartOpen=false;orderConfirmed=false;sendingOrder=false;renderOverlay();await loadShopOrders();await notifyLive(result.action==="added"?"addition":"order");sendPushEventV23(result.action==="added"?"addition":"new_order",result.order_id);toast(result.action==="added"?"Дополнение добавлено к заказу ✅":"Заказ отправлен в цех ✅");renderShopPreserve();
+ const targetDate=orderTargetDate;
+ sendingOrder=true;
+ renderOverlay();
+ let r;
+ try{
+   r=await client.rpc("v19_place_or_add_order",{items,target_date:targetDate,order_note:""});
+ }catch(error){
+   r={error};
+ }
+ if(r?.error){
+   sendingOrder=false;
+   orderConfirmed=false;
+   try{await loadScheduleV24()}catch(_){}
+   try{
+     await loadShop();
+     basket=Object.fromEntries(Object.entries(basket).filter(([id])=>products.some(p=>p.id===id&&p.active&&!p.archived)));
+   }catch(_){}
+   const msg=String(r.error?.message||r.error||"");
+   renderShopPreserve();
+   toast(/не принимает заказы|рабочий день/i.test(msg)?"Эта дата сейчас выходная. Выберите доступный рабочий день.":"Не удалось отправить. Проверьте связь и попробуйте ещё раз.");
+   return;
+ }
+ const result=r.data?.[0]||{};
+ const isAddition=result.action==="added";
+
+ // The database has already accepted the order. Clear the cart immediately;
+ // secondary services must never keep stale cart UI on screen.
+ basket={};
+ shopCartOpen=false;
+ orderConfirmed=false;
+ sendingOrder=false;
+ renderShopPreserve();
+ toast(isAddition?"Дополнение добавлено к заказу ✅":"Заказ отправлен в цех ✅");
+
+ // LIVE and Push are best-effort and cannot break the successful order flow.
+ Promise.resolve(notifyLive(isAddition?"addition":"order")).catch(e=>console.warn("LIVE notify",e));
+ Promise.resolve(sendPushEventV24(isAddition?"addition":"new_order",result.order_id)).catch(e=>console.warn("Push notify",e));
+
+ // Refresh order history independently. If it fails, fallback/live sync will retry later.
+ try{
+   await loadShopOrders();
+   renderShopPreserve();
+ }catch(e){
+   console.warn("Order accepted, history refresh delayed",e);
+ }
 }
 
 function v24ScheduleCardHtml(){
@@ -2869,12 +2905,12 @@ notificationModalV24=function(){
 settingsPanel=function(){
  if(!isAdmin())return `<div class="empty">Нет доступа.</div>`;
  const ownUrl=staffUrlFromToken(STAFF_TOKEN);
- return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V26.2 REAL UPDATE</div></div>${v24ScheduleCardHtml()}</div>`;
+ return `<div class="v25SettingsGrid"><div class="card"><h2>Мои настройки</h2><div class="field"><label>Имя в системе</label><input id="own_name" class="input" value="${esc(staff.display_name)}" onchange="saveOwnName(true)"></div><div class="field"><label>Роль</label><div class="roleLock">${roleName()}</div></div><button class="btn" style="width:100%" onclick="saveOwnName(false)">Сохранить имя</button><div class="autoSaved">Имя также сохраняется автоматически.</div></div><div class="card"><h2>Моя рабочая ссылка</h2><p class="muted small">Секретный ключ скрыт. Не отправляйте эту ссылку магазинам.</p><div class="v25SecretLine"><code>${v25OwnLinkVisible?esc(ownUrl):v25MaskLink()}</code><span>🔐</span></div><div class="staffActions"><button class="btn secondary" onclick="toggleOwnLinkV25()">${v25OwnLinkVisible?"Скрыть":"Показать"}</button><button class="btn secondary" onclick="copy('${esc(ownUrl)}')">Копировать</button><button class="btn danger wide" onclick="rotateOwnLink()">Создать новую ссылку</button></div><div class="pwaCard"><b>Установить «Цех» как приложение</b><div class="small muted" style="margin:5px 0 9px">На этом устройстве сохранится текущая персональная ссылка.</div><button class="btn secondary" style="width:100%" onclick="installApp()">Установить / добавить на экран</button></div></div><div class="card"><h2>Уведомления</h2><p class="muted">Телефон и компьютер теперь управляются отдельно.</p><button class="btn secondary" style="width:100%" onclick="openNotificationSettings()">🔔 Мои устройства и уведомления</button></div><div class="card"><h2>Проверка системы</h2><p class="muted">Проверим доступ, магазины, товары, категории, фото и синхронизацию без изменений данных.</p><button class="btn secondary" style="width:100%" onclick="runSystemHealth()">Проверить всё</button><div class="v25About">Версия V26.4 STABLE</div></div>${v24ScheduleCardHtml()}</div>`;
 }
 
 /* Header: clean production UI, version stays only in Settings. */
-renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>•</span><span class="v262BuildMini">V26.3</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
-renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • <span class="v262BuildMini">V26.3</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
+renderStaff=function(){const allowed=new Set(allowedTabs().map(x=>x[0]));if(!allowed.has(tab))tab="orders";app.innerHTML=`<div class="wrap v23Shell"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">ЦЕХ • ${esc(staff.display_name)}</div><div class="v23Sub"><span>${roleName()}</span><span>•</span>${liveBadgeHtml()}<span>•</span><span class="v262BuildMini">V26.4</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openStaffHelp()" aria-label="Подсказки">?</button><button id="v23BellBtn" class="v23IconBtn ${v23OrderCount("new")?"v23BellPulse":""}" onclick="openNotificationSettings()" aria-label="Уведомления">🔔${v23UnreadBadge()}</button><button class="v23IconBtn" onclick="manualRefresh()" aria-label="Обновить">↻</button><div class="v23Avatar">${esc(v23Initials(staff.display_name))}</div></div></header><div id="v23MetricsRoot">${v23MetricsHtml()}</div>${nav()}<div id="offline" class="offline">Нет связи с базой. Показываем последние данные.</div><div id="panelRoot">${currentStaffPanelHtml()}</div></div>`;renderOverlay();focusHashOrderV24()}
+renderShop=function(){const count=basketItems().length,units=basketUnits();v24NormalizeTarget();app.innerHTML=`<div class="wrap v23Shell shopPage"><header class="v23Header"><div class="v23BrandWrap"><div class="v23Logo">🥐</div><div><div class="v23Brand">${esc(shop.name)}</div><div class="v23Sub">Магазин • ${liveBadgeHtml()} • <span class="v262BuildMini">V26.4</span></div></div></div><div class="v23HeaderActions"><button class="v23IconBtn" onclick="openShopHelp()" aria-label="Подсказки">?</button><button class="v23IconBtn" onclick="refreshShop()" aria-label="Обновить">↻</button></div></header><div class="v23ShopHero"><div><h1>Заказ продукции</h1><p class="muted">Выберите товар и количество — на телефоне всё остаётся в одной удобной колонке.</p></div><span style="font-size:34px">🧺</span></div>${v24ScheduleState?.override_active?`<div class="v24WeekendNotice"><b>Ближайшие выходные рабочие.</b> Цех временно принимает заказы на доступные выходные даты.</div>`:""}<div class="grid g2"><div class="card"><h2>Меню</h2>${groupedProducts()}</div><div class="card"><h2>Мои заказы</h2>${shopOrdersHtml()}</div></div></div>${count?`<div class="cartDock"><button onclick="openShopCart()"><span class="cartMain"><span>🛒 Корзина • ${count} товар(а)</span><span class="cartSub">${units} шт. • Нажмите, чтобы проверить заказ</span></span><b>${money(basketTotal())}</b></button></div>`:""}`;renderOverlay()}
 
 /* Cleaner shop history on all screen widths. */
 let v263ShopOrderOpenId=null;
